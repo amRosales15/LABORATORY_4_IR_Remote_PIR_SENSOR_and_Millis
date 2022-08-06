@@ -57,7 +57,7 @@ int t=1000;
 
 //for pir & ultrasonic
 int pirPin=3,pirVal;
-int trigPin=9,echoPin=10;
+int trigPin=12,echoPin=10;
 long duration;
 int distance;
 
@@ -82,16 +82,16 @@ unsigned  irRemote[] ={
              0xFD08F7, //1
              0xFD8877, //2
   
-          0xFD48B7,//3
-       0xFD28D7,//4
-       0xFDA857,//5
+   			 0xFD48B7,//3
+			 0xFD28D7,//4
+			 0xFDA857,//5
   
-       0xFD6897,//6
-         0xFD18E7,//7
-       0xFD9867,//8
+			 0xFD6897,//6
+   			 0xFD18E7,//7
+			 0xFD9867,//8
   
-       0xFD58A7,//9
-       0xFD30CF //0
+			 0xFD58A7,//9
+			 0xFD30CF //0
                      };
 
 
@@ -175,13 +175,15 @@ void loop()
       lcd1.print("Distance= ");
       lcd1.setCursor(10,0);
       lcd1.print(distance);
+      lcd1.setCursor(14,0);
+      lcd1.print("cm");
       digitalWrite(trigPin, LOW); 
       delayMicroseconds(2);
       digitalWrite(trigPin, HIGH);
       delayMicroseconds(10);
       digitalWrite(trigPin, LOW);
       duration = pulseIn(echoPin, HIGH);
-      distance= duration*0.034/2;  
+      distance= (duration*0.0343)/2;  
       
   
  if (irrecv.decode(&results)) {
